@@ -58,7 +58,7 @@
 }
 
 .search__results {
-    color: #888;
+    color: var(--muted);
 }
 
 .contacts {
@@ -75,10 +75,8 @@
 }
 
 .contact-card {
-    border: 1px solid #333;
-    border-radius: 12px;
     padding: 1rem;
-    background: #111;
+    border-bottom: 1px dashed var(--border);
 }
 
 .contact-card__name {
@@ -89,7 +87,7 @@
 .contact-card__email,
 .contact-card__phone {
     margin: 0.1rem 0;
-    color: #aaa;
+    color: var(--muted);
 }
 
 .form {
@@ -113,10 +111,9 @@
 input,
 select {
     border-radius: 8px;
-    border: 1px solid #3a3a3a;
+    border: 1px solid var(--border);
     padding: 0.5rem 0.75rem;
-    background: #1a1a1a;
-    color: inherit;
+    background: var(--bg);
 }
 
 .form__actions {

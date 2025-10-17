@@ -2,24 +2,21 @@ import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 
 const FALLBACK_CONTACTS = [
-    {
-        id: 1,
-        name: "Ada Lovelace",
-        phone: "(555) 010-0101",
-        email: "ada@example.com",
-    },
-    {
-        id: 2,
-        name: "Alan Turing",
-        phone: "(555) 010-0102",
-        email: "alan@example.com",
-    },
-    {
-        id: 3,
-        name: "Grace Hopper",
-        phone: "(555) 010-0103",
-        email: "grace@example.com",
-    },
+    {id: 1, name: "Winnie Pooh", phone: "(555) 010-0101", email: "winne@cartoon.com", },
+    {id: 2, name: "Buzz Lightyear", phone: "(555) 010-0102", email: "buzz@cartoon.com", },
+    {id: 3, name: "Pink Panther", phone: "(555) 010-0103", email: "pink@cartoon.com", },
+    {id: 4, name: "Mickey Mouse", phone: "(555) 010-0104", email: "mickey@cartoon.com", },
+    {id: 5, name: "Homer Simpson", phone: "(555) 010-0105", email: "homer@cartoon.com", },
+    {id: 6, name: "Peter Griffin", phone: "(555) 010-0106", email: "peter@cartoon.com", },
+    {id: 7, name: "Bugs Bunny", phone: "(555) 010-0107", email: "bugs@cartoon.com", },
+    {id: 8, name: "Ash Ketchum", phone: "(555) 010-0108", email: "ash@cartoon.com", },
+    {id: 9, name: "Patrick Star", phone: "(555) 010-0109", email: "patrick@cartoon.com", },
+    {id: 10, name: "Daffy Duck", phone: "(555) 010-0110", email: "daffy@cartoon.com", },
+    {id: 11, name: "Scooby Doo", phone: "(555) 010-0111", email: "scooby@cartoon.com", },
+    {id: 12, name: "Jerry Mouse", phone: "(555) 010-0112", email: "jerry@cartoon.com", },
+    {id: 13, name: "Tom Cat", phone: "(555) 010-0113", email: "tom@cartoon.com", },
+    {id: 14, name: "Bob Belcher", phone: "(555) 010-0114", email: "bob@cartoon.com", },
+    {id: 15, name: "Charlie Brown", phone: "(555) 010-0115", email: "charlie@cartoon.com", },
 ];
 
 const App = () => {
@@ -40,8 +37,8 @@ const App = () => {
     return (
         <main className="page" data-testid="page-root">
             <header className="page__header">
-                <h1 className="page__title">Phonebook Challenge</h1>
-                <p className="page__subtitle">Build a simple contact directory</p>
+                <h1 className="page__title">The Ultimate PhoneBook</h1>
+                <p className="page__subtitle">The only site you'll need to find someone</p>
             </header>
 
             <section className="search" aria-labelledby="search-heading">
@@ -118,12 +115,6 @@ const App = () => {
                 </form>
             </section>
 
-            <footer className="page__footer">
-                <small>
-                    Starter provided. Complete tasks per README and make this page
-                    shine.
-                </small>
-            </footer>
         </main>
     );
 };
