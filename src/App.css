@@ -32,7 +32,7 @@
     border-radius: 8px;
     border: 1px solid #3a3a3a;
     padding: 0.5rem 0.9rem;
-    background: #1a1a1a;
+    background: var(--bg);
     color: inherit;
     cursor: pointer;
 }
@@ -75,8 +75,10 @@
 }
 
 .contact-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
     padding: 1rem;
-    border-bottom: 1px dashed var(--border);
+    background: var(--bg);
 }
 
 .contact-card__name {
