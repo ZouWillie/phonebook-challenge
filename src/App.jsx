@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import "./App.css";
+import winniePooh from "/src/assets/winniePooh.jpg";
 
 const FALLBACK_CONTACTS = [
-    {id: 1, name: "Winnie Pooh", phone: "(555) 010-0101", email: "winne@cartoon.com", },
+    {id: 1, name: "Winnie Pooh", phone: "(555) 010-0101", email: "winne@cartoon.com", avatar: winniePooh},
     {id: 2, name: "Buzz Lightyear", phone: "(555) 010-0102", email: "buzz@cartoon.com", },
     {id: 3, name: "Pink Panther", phone: "(555) 010-0103", email: "pink@cartoon.com", },
     {id: 4, name: "Mickey Mouse", phone: "(555) 010-0104", email: "mickey@cartoon.com", },
@@ -65,6 +66,16 @@ const App = () => {
 
             <section className="contacts" aria-labelledby="contacts-heading">
                 <h2 id="contacts-heading">Contacts</h2>
+                <ul className="contacts__list" data-testid="contacts-list">
+                    {contacts.map((contact) => (
+                        <li key={contact.id} className="contact-card" data-testid={`contact-card-${contact.id}`}>
+                            <p className="contact-card__name"><strong>{contact.name}</strong></p>
+                            <p className="contact-card__phone">Phone: {contact.phone}</p>
+                            <p className="contact-card__email">Email: {contact.email}</p>
+                            {/* <img className="contact-card__image" src={contact.avatar}/> */}
+                        </li>
+                    ))}
+                 </ul>
             </section>
 
             <section className="form" aria-labelledby="form-heading">
