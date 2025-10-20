@@ -91,10 +91,13 @@
     margin: 0.1rem 0;
     color: var(--muted);
 }
+
 .contact-card__avatar{
-    max-height: 100%;
     object-fit: cover;
-    width: 60px;
+    flex-shrink: 0;
+    max-width: 60px !important;
+    max-height: 100% !important;
+    width: 20px;
 }
 
 .form {
