@@ -3,7 +3,7 @@ import "./App.css";
 import winniePooh from "/src/assets/winniePooh.jpg";
 
 const FALLBACK_CONTACTS = [
-    {id: 1, name: "Winnie Pooh", phone: "(555) 010-0101", email: "winne@cartoon.com", avatar: winniePooh},
+    {id: 1, name: "Winnie Pooh", phone: "(555) 010-0101", email: "winnie@cartoon.com", avatar: winniePooh},
     {id: 2, name: "Buzz Lightyear", phone: "(555) 010-0102", email: "buzz@cartoon.com", },
     {id: 3, name: "Pink Panther", phone: "(555) 010-0103", email: "pink@cartoon.com", },
     {id: 4, name: "Mickey Mouse", phone: "(555) 010-0104", email: "mickey@cartoon.com", },
