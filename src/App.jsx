@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import winniePooh from "/src/assets/winniePooh.jpg";
+import nerdlogo from "/src/assets/nerd.jpg";
 
 const FALLBACK_CONTACTS = [
     {id: 1, name: "Winnie Pooh", phone: "(555) 010-0101", email: "winnie@cartoon.com", avatar: winniePooh},
@@ -40,6 +41,7 @@ const App = () => {
             <header className="page__header">
                 <h1 className="page__title">The Ultimate PhoneBook</h1>
                 <p className="page__subtitle">The only site you'll need to find someone</p>
+                <img src={nerdlogo} alt="Glasses Nerd" className="mascot"/>
             </header>
 
             <section className="search" aria-labelledby="search-heading">
