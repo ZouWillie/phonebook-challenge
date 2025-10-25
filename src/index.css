@@ -1,20 +1,24 @@
 :root {
   /* Light theme colors */
-  --bg: #0f0f10;
-  --fg: #e7e7e9;
-  --muted: #9aa0a6;
-  --border: #2b2b2e;
-  --accent: #7c8cff;
+  --bg: #f7f0e0;
+  --fg: #331a00;
+  --muted: #a89b78;
+  --border: #d4c698;
+  --accent: #8b0000;
+  --card-bg: #fff8eb;
+  --accent-focus: #aa6c39;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     /* Dark theme colors for media query */
-    --bg: #ffffff;
-    --fg: #1d1d1f;
-    --muted: #6e6e73;
-    --border: #e5e5ea;
-    --accent: #3c5cff;
+    --bg: #1a150f;
+    --fg: #f7f0e0;
+    --muted: #a89b78;
+    --border: #5c5548;
+    --accent: #ffc977;
+    --card-bg: #2b2317;
+    --accent-focus: #ffc977;
   }
 }
 
