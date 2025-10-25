@@ -170,6 +170,13 @@ select {
     border: 1px solid var(--border);
 }
 
+input:focus,
+select:focus,
+.btn:focus {
+    outline: 4px solid var(--accent-focus); 
+    outline-offset: 2px;
+}
+
 @media (max-width: 720px) {
     .form__body {
         grid-template-columns: 1fr;
