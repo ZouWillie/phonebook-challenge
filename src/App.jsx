@@ -71,12 +71,12 @@ const App = () => {
                     {/* What this does is it loops through the array and print each of the contact information on it's own line 
                     I used already defined class to make my the default contact index*/}
                     {contacts.map((contact) => (
-                        <li key={contact.id} className="contact-card" data-testid={`contact-card-${contact.id}`}>
+                        <div key={contact.id} className="contact-card" data-testid={`contact-card-${contact.id}`}>
+                            <img className="contact-card__avatar" src={contact.avatar}/> 
                             <p className="contact-card__name"><strong>{contact.name}</strong></p>
                             <p className="contact-card__phone">Phone: {contact.phone}</p>
                             <p className="contact-card__email">Email: {contact.email}</p>
-                            <img className="contact-card__image" src={contact.avatar}/> 
-                        </li>
+                        </div>
                     ))}
                  </ul>
             </section>
