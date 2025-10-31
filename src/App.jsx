@@ -67,7 +67,7 @@ const App = () => {
 
             <section className="contacts" aria-labelledby="contacts-heading">
                 <h2 id="contacts-heading">Contacts</h2>
-                <ul className="contacts__list" data-testid="contacts-list">
+                <ul className="contacts__grid" data-testid="contacts-list">
                     {/* What this does is it loops through the array and print each of the contact information on it's own line 
                     I used already defined class to make my the default contact index*/}
                     {contacts.map((contact) => (

@@ -82,7 +82,7 @@
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1rem;
 }
 
@@ -91,6 +91,7 @@
     border-radius: 12px;
     padding: 1rem;
     background: var(--bg);
+    max-width: 240px;
 }
 
 .contact-card__name {
@@ -107,10 +108,12 @@
 }
 
 .contact-card__avatar{
-    height: 60px;
-    width: 60px;
+    height: 200px;
+    width: 200px;
     object-fit: cover;
     flex-shrink: 0;
+    display: block;
+    align-items: center;
 }
 
 .form {
