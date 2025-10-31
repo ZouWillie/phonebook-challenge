@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import winniePooh from "/src/assets/winniePooh.jpg";
 import nerdlogo from "/src/assets/nerd.jpg";
+import Contact from "./components/Contact/Contact";
 
 const FALLBACK_CONTACTS = [
     {id: 1, name: "Winnie Pooh", phone: "(555) 010-0101", email: "winnie@cartoon.com", avatar: winniePooh},
@@ -79,7 +80,15 @@ const App = () => {
                             {/* <img className="contact-card__image" src={contact.avatar}/> */}
                         </li>
                     ))}
-                 </ul>
+                </ul>  
+                {FALLBACK_CONTACTS.map((contact) => {
+                    return <Contact
+                        email={contact.email}
+                        photo={contact.photo}
+                        name={contact.name}
+                    />
+
+                })}
             </section>
 
             <section className="form" aria-labelledby="form-heading">
