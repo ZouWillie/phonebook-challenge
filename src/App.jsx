@@ -24,6 +24,7 @@ const App = () => {
     const [contacts, setContacts] = useState(FALLBACK_CONTACTS);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [selectedContact, setSelectedContact] = useState(null);
 
     useEffect(() => {}, []);
 
@@ -67,18 +68,50 @@ const App = () => {
 
             <section className="contacts" aria-labelledby="contacts-heading">
                 <h2 id="contacts-heading">Contacts</h2>
+                {selectedContact ? (
+                <div className="contact-detail-design">                       
+                    {(() => {
+                        const currentContactIndex = contacts.findIndex(c => c.id === selectedContact);
+                        const totalContacts = contacts.length;
+                        const prevContact = contacts[currentContactIndex - 1];
+                        const nextContact = contacts[currentContactIndex + 1];
+                        const currentContact = contacts[currentContactIndex];                           
+                        if (!currentContact) return null; 
+
+                        return (<>
+                            <div className="navigation_req">
+                                {prevContact && (<button className="btn btn--nav btn--prev" onClick={() => setSelectedContact(prevContact.id)}>← Previous</button>)}
+                                <button className="btn btn--back" onClick={() => setSelectedContact(null)}>Back to Grid</button>
+                                {nextContact && (<button className="btn btn--nav btn--next" onClick={() => setSelectedContact(nextContact.id)}> Next → </button>)}
+                            </div>
+                                    
+                            <div className="contact-card contact-card__detail">
+                                <img className="contact-card__avatar" src={currentContact.avatar} alt={`${currentContact.name}'s avatar`}/>
+                                <p className="contact-card__name"><strong>{currentContact.name}</strong></p>
+                                <p className="contact-card__phone">Phone: {currentContact.phone}</p>
+                                <p className="contact-card__email">Email: {currentContact.email}</p>
+                            </div>
+                            <p className="page_number">{currentContactIndex + 1} of {totalContacts}</p>
+                        </>
+                        );
+                    })()}
+                </div>
+                    
+                ) : (
+                
                 <ul className="contacts__grid" data-testid="contacts-list">
                     {/* What this does is it loops through the array and print each of the contact information on it's own line 
                     I used already defined class to make my the default contact index*/}
                     {contacts.map((contact) => (
-                        <div key={contact.id} className="contact-card" data-testid={`contact-card-${contact.id}`}>
-                            <img className="contact-card__avatar" src={contact.avatar}/> 
+                        <div key={contact.id} className="contact-card" data-testid={`contact-card-${contact.id}`} onClick={() => setSelectedContact(contact.id)}>
+                            <img className="contact-card__avatar" src={contact.avatar} alt={`${contact.name}'s avatar`}/>
                             <p className="contact-card__name"><strong>{contact.name}</strong></p>
                             <p className="contact-card__phone">Phone: {contact.phone}</p>
                             <p className="contact-card__email">Email: {contact.email}</p>
                         </div>
                     ))}
                  </ul>
+                )}
             </section>
 
             <section className="form" aria-labelledby="form-heading">

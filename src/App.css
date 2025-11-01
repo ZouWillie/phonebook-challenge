@@ -186,6 +186,47 @@ select:focus,
     outline-offset: 2px;
 }
 
+.contact-detail-design {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.contact-card__detail {
+    max-width: 500px; 
+    padding: 2rem;
+    text-align: center;
+}
+
+.navigation_req {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%; 
+    margin-bottom: 1.5rem; 
+}
+
+.btn--back {
+    background: none;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    align-self: unset; 
+}
+
+.btn--back:hover {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+.page_number {
+    margin-top: -1rem; 
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: var(--muted);
+}
+
 @media (max-width: 720px) {
     .form__body {
         grid-template-columns: 1fr;
