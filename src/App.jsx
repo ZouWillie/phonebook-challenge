@@ -20,20 +20,64 @@ const FALLBACK_CONTACTS = [
     {id: 15, name: "Charlie Brown", phone: "(555) 010-0115", email: "charlie@cartoon.com", avatar: "https://hopeforwidows.org/wp-content/uploads/2014/07/charliebrown.jpg"},
 ];
 
+const randomAvatar = [
+    "https://wallpapers-clan.com/wp-content/uploads/2022/07/anime-default-pfp-2.jpg",
+    "https://wallpapers-clan.com/wp-content/uploads/2022/07/anime-default-pfp-29.jpg",
+    "https://wallpapers-clan.com/wp-content/uploads/2022/07/anime-default-pfp-5.jpg",
+    "https://wallpapers-clan.com/wp-content/uploads/2022/07/anime-default-pfp-1.jpg"
+];
+
+const getRandomAvatar = (avatarList) => {
+    return avatarList[Math.floor(Math.random() * avatarList.length)];
+}
+
 const App = () => {
-    const [contacts, setContacts] = useState(FALLBACK_CONTACTS);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [contacts, setContacts] = useState([]); 
+    const [loading, setLoading] = useState(false); 
+    const [error, setError] = useState(null);     
+    const [query, setQuery] = useState("");        
+    const [form, setForm] = useState({ name: "", phone: "", email: "" }); 
+    const [formErrors, setFormErrors] = useState({}); 
     const [selectedContact, setSelectedContact] = useState(null);
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        const contractLoader = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await fetch("/data/contacts.json");
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            setContacts(data);
+        } catch (fetchError) {
+            console.error("Problem with remote data:", fetchError);
+            setError("I have no data xd");
+        } finally {
+            setLoading(false);
+        }
+        };
+        contractLoader();
+    }, []);
 
-    const [query, setQuery] = useState("");
+    const visibleContacts = useMemo(() => {
+        const lower = query.toLowerCase();
+        return contacts.filter(
+        (c) => c.name.toLowerCase().includes(lower) || c.phone.toLowerCase().includes(lower) );
+    }, [contacts, query]);
 
-    const [form, setForm] = useState({ name: "", phone: "", email: "" });
-    function handleSubmit(e) {
-        e.preventDefault();
-        // Add contact submission logic here
+    function handleSubmit(submit) {
+        submit.preventDefault();
+
+        const problems = {};
+        if (form.name.trim().length < 2) problems.name = "The name must be at least 2 characters";
+        if (!form.phone.trim()) problems.phone = "A phone number is required";
+        if (form.email.trim().length > 0 && !form.email.includes("@")) {problems.email = "Email must include a @";}
+        if (Object.keys(problems).length > 0) { setFormErrors(problems); return; }
+
+        const userAdd = {id: Date.now(), ...form, avatar: getRandomAvatar(randomAvatar),};
+        setContacts([userAdd, ...contacts]);
+        setForm({ name: "", phone: "", email: "" });
+        setFormErrors({});
     }
 
     return (
@@ -59,8 +103,8 @@ const App = () => {
                 </div>
 
                 <p className="search__results" data-testid="results-count">
-                    Showing {contacts.length}{" "}
-                    {contacts.length === 1 ? "result" : "results"}
+                    Showing {visibleContacts.length}{" "}
+                    {visibleContacts.length === 1 ? "result" : "results"}
                     {loading ? " (loading...)" : ""}
                     {error ? ` (error: ${error})` : ""}
                 </p>
@@ -102,7 +146,7 @@ const App = () => {
                 <ul className="contacts__grid" data-testid="contacts-list">
                     {/* What this does is it loops through the array and print each of the contact information on it's own line 
                     I used already defined class to make my the default contact index*/}
-                    {contacts.map((contact) => (
+                    {visibleContacts.map((contact) => (
                         <div key={contact.id} className="contact-card" data-testid={`contact-card-${contact.id}`} onClick={() => setSelectedContact(contact.id)}>
                             <img className="contact-card__avatar" src={contact.avatar} alt={`${contact.name}'s avatar`}/>
                             <p className="contact-card__name"><strong>{contact.name}</strong></p>
@@ -127,6 +171,7 @@ const App = () => {
                             required
                             minLength={2}
                         />
+                        {formErrors.name && <p className="validation_error">{formErrors.name}</p>}
                     </div>
                     <div className="field">
                         <label htmlFor="phone">Phone</label>
@@ -139,8 +184,9 @@ const App = () => {
                             onChange={(e) =>
                                 setForm({ ...form, phone: e.target.value })
                             }
-                            required
+                            required                           
                         />
+                        {formErrors.phone && <p className="validation_error">{formErrors.phone}</p>}
                     </div>
                     <div className="field">
                         <label htmlFor="email">Email</label>
@@ -153,11 +199,12 @@ const App = () => {
                                 setForm({ ...form, email: e.target.value })
                             }
                         />
+                        {formErrors.email && <p className="validation_error">{formErrors.email}</p>}
                     </div>
                     <div className="form__actions">
                         <button className="btn" type="submit" data-testid="btn-add">
                             Add Contact
-                        </button>
+                        </button>                        
                     </div>
                 </form>
             </section>

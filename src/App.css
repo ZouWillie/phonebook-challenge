@@ -227,6 +227,13 @@ select:focus,
     color: var(--muted);
 }
 
+.validation_error {
+    color: var(--accent); 
+    font-size: 0.8em; 
+    margin-top: 0.2rem;
+    font-style: italic; 
+}
+
 @media (max-width: 720px) {
     .form__body {
         grid-template-columns: 1fr;
