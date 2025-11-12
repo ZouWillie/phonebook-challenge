@@ -62,7 +62,7 @@ const App = () => {
     const visibleContacts = useMemo(() => {
         const lower = query.toLowerCase();
         return contacts.filter(
-        (c) => c.name.toLowerCase().includes(lower) || c.phone.toLowerCase().includes(lower) );
+        (contact) => contact.name.toLowerCase().includes(lower) || contact.phone.toLowerCase().includes(lower) );
     }, [contacts, query]);
 
     function handleSubmit(submit) {
